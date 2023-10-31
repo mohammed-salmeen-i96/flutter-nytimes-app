@@ -8,12 +8,12 @@ import 'package:ny_times_app/models/article_model.dart';
 class ArticleRepository {
   final Dio _dio;
 
-  ArticleRepository({Dio? dio}) : _dio = dio ?? GetIt.instance<Dio>();
+  ArticleRepository({Dio? dio}) : _dio = GetIt.instance<Dio>();
 
   Future<List<Article>> fetchArticles() async {
     try {
       final response = await _dio.get(AppConfig.BASE_URL + AppConfig.API_KEY);
-      print(response);
+      // print(response);
       if (response.data != null && response.data['results'] != null) {
         return (response.data['results'] as List)
             .map((json) => Article.fromJson(json))
